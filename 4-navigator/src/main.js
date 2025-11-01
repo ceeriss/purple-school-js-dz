@@ -25,3 +25,4 @@ distance = (distance + sumOfSquares / distance) / 2;
 
 // Выводим результат
 console.log("Расстояние: " + distance);
+//
