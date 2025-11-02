@@ -1,12 +1,4 @@
-let language = prompt("Введите свой язык: ")
-
-switch (language) {
-	case "en": alert("Hello")
-	break;
-	case "ru": alert("Привет")
-	break;
-	case "de": alert("Gutten Tag")
-	break;
-	default: alert("Unknown language")
-	break;
-}
+const hasLicence = true;
+const age = 18;
+const isDrunk = false;
+console.log(((hasLicence && age >= 18) && !isDrunk) ? 'может' : 'не может');
