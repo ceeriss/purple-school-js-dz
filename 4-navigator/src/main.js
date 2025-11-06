@@ -1,27 +1,23 @@
-const arr = [1, 40, -5, 10, 0];
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function sortArray(arr) {
-  // Создаем копию массива, чтобы не изменять оригинал
-  const sortedArr = [...arr];
-
-  // Внешний цикл - проходим по всем элементам
-  for (let i = 0; i < sortedArr.length - 1; i++) {
-    // Внутренний цикл - сравниваем соседние элементы
-    for (let j = 0; j < sortedArr.length - 1 - i; j++) {
-      // Если текущий элемент больше следующего - меняем их местами
-      if (sortedArr[j] > sortedArr[j + 1]) {
-        // Меняем элементы местами
-        let temp = sortedArr[j];
-        sortedArr[j] = sortedArr[j + 1];
-        sortedArr[j + 1] = temp;
-      }
-    }
-  }
-
-  return sortedArr;
+function firstFunc(arr, func) {
+  return func(arr);
 }
 
-// Использование
-const sortedArray = sortArray(arr);
-console.log("Исходный массив:", arr); // [1, 40, -5, 10, 0]
-console.log("Отсортированный массив:", sortedArray); // [-5, 0, 1, 10, 40]
+function secondFunc(arr) {
+  let isDel = false;
+
+  // Идем с конца чтобы не нарушать индексы при удалении
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i] > 5) {
+      arr.splice(i, 1); // удаляем по индексу
+      isDel = true;
+    } else {
+      isDel = false;
+    }
+  }
+  return arr;
+}
+
+const result = firstFunc(array, secondFunc);
+console.log(result); // [1, 2, 3, 4, 5]
