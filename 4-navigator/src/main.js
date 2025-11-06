@@ -1,22 +1,21 @@
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function firstFunc(arr, func) {
-  return func(arr);
-}
-
-function secondFunc(arr) {
-  let isDel = false;
-
-  // Идем с конца чтобы не нарушать индексы при удалении
-  for (let i = arr.length - 1; i >= 0; i--) {
-    if (arr[i] > 5) {
-      arr.splice(i, 1); // удаляем по индексу
-      isDel = true;
-    } else {
-      isDel = false;
+function firstFunc(arr, shouldDeleteFunc) {
+  const result = [];
+  for (let element of arr) {
+    // Для каждого элемента вызываем функцию shouldDeleteFunc
+    // Если она возвращает false - оставляем элемент
+    if (!shouldDeleteFunc(element)) {
+      result.push(element);
     }
   }
-  return arr;
+  return result;
+}
+
+function secondFunc(number) {
+  // Функция принимает одно число и возвращает true/false
+  // true - удалить элемент, false - оставить элемент
+  return number > 5; // удаляем числа больше 5
 }
 
 const result = firstFunc(array, secondFunc);
