@@ -1,19 +1,27 @@
-function crypto(password) {
-  const arr = password.split("");
-  const middle = arr.length / 2;
-  const firstHalf = arr.slice(0, middle);
-  const secondHalf = arr.slice(middle);
-  return firstHalf.reverse().join("") + secondHalf.reverse().join("");
+const arr = [1, 40, -5, 10, 0];
+
+function sortArray(arr) {
+  // Создаем копию массива, чтобы не изменять оригинал
+  const sortedArr = [...arr];
+
+  // Внешний цикл - проходим по всем элементам
+  for (let i = 0; i < sortedArr.length - 1; i++) {
+    // Внутренний цикл - сравниваем соседние элементы
+    for (let j = 0; j < sortedArr.length - 1 - i; j++) {
+      // Если текущий элемент больше следующего - меняем их местами
+      if (sortedArr[j] > sortedArr[j + 1]) {
+        // Меняем элементы местами
+        let temp = sortedArr[j];
+        sortedArr[j] = sortedArr[j + 1];
+        sortedArr[j + 1] = temp;
+      }
+    }
+  }
+
+  return sortedArr;
 }
 
-function check(encryptedPassword, originalPassword) {
-  return crypto(originalPassword) === encryptedPassword;
-}
-
-// Проверка
-const original = "password";
-const encrypted = crypto(original);
-
-console.log("Исходный:", original); // "password"
-console.log("Зашифрованный:", encrypted); // "ssapdorw"
-console.log("Проверка:", check(encrypted, original)); // true
+// Использование
+const sortedArray = sortArray(arr);
+console.log("Исходный массив:", arr); // [1, 40, -5, 10, 0]
+console.log("Отсортированный массив:", sortedArray); // [-5, 0, 1, 10, 40]
