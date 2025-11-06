@@ -1,27 +1,27 @@
-// Задаем координаты
-const addressLat = 10; // адрес назначения lat
-const addressLong = 20; // адрес назначения long
-const positionLat = 5; // текущее положение lat
-const positionLong = 15; // текущее положение long
+const arr = [1, 40, -5, 10, 0];
 
-// Считаем разницу по координатам
-const diffLat = addressLat - positionLat; // разница по широте
-const diffLong = addressLong - positionLong; // разница по долготе
+function sortArray(arr) {
+  // Создаем копию массива, чтобы не изменять оригинал
+  const sortedArr = [...arr];
 
-// Возводим разницы в квадрат
-const diffLatSquared = diffLat * diffLat;
-const diffLongSquared = diffLong * diffLong;
+  // Внешний цикл - проходим по всем элементам
+  for (let i = 0; i < sortedArr.length - 1; i++) {
+    // Внутренний цикл - сравниваем соседние элементы
+    for (let j = 0; j < sortedArr.length - 1 - i; j++) {
+      // Если текущий элемент больше следующего - меняем их местами
+      if (sortedArr[j] > sortedArr[j + 1]) {
+        // Меняем элементы местами
+        let temp = sortedArr[j];
+        sortedArr[j] = sortedArr[j + 1];
+        sortedArr[j + 1] = temp;
+      }
+    }
+  }
 
-// Складываем квадраты разниц
-const sumOfSquares = diffLatSquared + diffLongSquared;
+  return sortedArr;
+}
 
-// Вычисляем квадратный корень простым способом (приблизительно)
-let distance = sumOfSquares / 2; // начинаем с половины числа
-
-// Уточняем результат несколько раз
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-
-// Выводим результат
-console.log("Расстояние: " + distance);
+// Использование
+const sortedArray = sortArray(arr);
+console.log("Исходный массив:", arr); // [1, 40, -5, 10, 0]
+console.log("Отсортированный массив:", sortedArray); // [-5, 0, 1, 10, 40]
