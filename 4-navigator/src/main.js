@@ -1,27 +1,22 @@
-// Задаем координаты
-const addressLat = 10; // адрес назначения lat
-const addressLong = 20; // адрес назначения long
-const positionLat = 5; // текущее положение lat
-const positionLong = 15; // текущее положение long
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-// Считаем разницу по координатам
-const diffLat = addressLat - positionLat; // разница по широте
-const diffLong = addressLong - positionLong; // разница по долготе
+function firstFunc(arr, shouldDeleteFunc) {
+  const result = [];
+  for (let element of arr) {
+    // Для каждого элемента вызываем функцию shouldDeleteFunc
+    // Если она возвращает false - оставляем элемент
+    if (!shouldDeleteFunc(element)) {
+      result.push(element);
+    }
+  }
+  return result;
+}
 
-// Возводим разницы в квадрат
-const diffLatSquared = diffLat * diffLat;
-const diffLongSquared = diffLong * diffLong;
+function secondFunc(number) {
+  // Функция принимает одно число и возвращает true/false
+  // true - удалить элемент, false - оставить элемент
+  return number > 5; // удаляем числа больше 5
+}
 
-// Складываем квадраты разниц
-const sumOfSquares = diffLatSquared + diffLongSquared;
-
-// Вычисляем квадратный корень простым способом (приблизительно)
-let distance = sumOfSquares / 2; // начинаем с половины числа
-
-// Уточняем результат несколько раз
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-
-// Выводим результат
-console.log("Расстояние: " + distance);
+const result = firstFunc(array, secondFunc);
+console.log(result); // [1, 2, 3, 4, 5]
