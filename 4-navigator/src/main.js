@@ -3,8 +3,9 @@ const query = {
     take: 10,
 }
 
-function Query(query) {
-  return `search=${query.search}&take=${query.take}`
+function Query(query, param1, param2) {
+  return `search=${query.param1}&take=${query.param2}`;
 }
 // search=Вася&take=10
 
+console.log(Query(query, 'search', 'take'));
