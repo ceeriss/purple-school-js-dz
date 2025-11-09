@@ -1,27 +1,10 @@
-// Задаем координаты
-const addressLat = 10; // адрес назначения lat
-const addressLong = 20; // адрес назначения long
-const positionLat = 5; // текущее положение lat
-const positionLong = 15; // текущее положение long
+const query = {
+  search: "Вася",
+  take: 10,
+};
 
-// Считаем разницу по координатам
-const diffLat = addressLat - positionLat; // разница по широте
-const diffLong = addressLong - positionLong; // разница по долготе
+function Query(obj, param1, param2) {
+  return `${param1}=${obj[param1]}&${param2}=${obj[param2]}`;
+}
 
-// Возводим разницы в квадрат
-const diffLatSquared = diffLat * diffLat;
-const diffLongSquared = diffLong * diffLong;
-
-// Складываем квадраты разниц
-const sumOfSquares = diffLatSquared + diffLongSquared;
-
-// Вычисляем квадратный корень простым способом (приблизительно)
-let distance = sumOfSquares / 2; // начинаем с половины числа
-
-// Уточняем результат несколько раз
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-
-// Выводим результат
-console.log("Расстояние: " + distance);
+console.log(Query(query, "search", "take")); // "search=Вася&take=10"
