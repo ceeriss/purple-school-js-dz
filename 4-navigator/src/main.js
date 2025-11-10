@@ -1,27 +1,33 @@
-// Задаем координаты
-const addressLat = 10; // адрес назначения lat
-const addressLong = 20; // адрес назначения long
-const positionLat = 5; // текущее положение lat
-const positionLong = 15; // текущее положение long
-
-// Считаем разницу по координатам
-const diffLat = addressLat - positionLat; // разница по широте
-const diffLong = addressLong - positionLong; // разница по долготе
-
-// Возводим разницы в квадрат
-const diffLatSquared = diffLat * diffLat;
-const diffLongSquared = diffLong * diffLong;
-
-// Складываем квадраты разниц
-const sumOfSquares = diffLatSquared + diffLongSquared;
-
-// Вычисляем квадратный корень простым способом (приблизительно)
-let distance = sumOfSquares / 2; // начинаем с половины числа
-
-// Уточняем результат несколько раз
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-
-// Выводим результат
-console.log("Расстояние: " + distance);
+const TodoList = {
+	tasks:[],
+	id:0,
+	addTask: function(title, priorety){
+		const task = {
+			id: this.id++,
+			title: title,
+			priorety: priorety,
+		}
+		this.tasks.push(task);
+		return task
+	},
+	removeTask: function(id){
+		this.tasks = this.tasks.filter((task) => task.id !== id)
+	},
+	sortTasks: function () {
+		this.tasks.sort((a,b) => a.priorety - b.priorety);
+	},
+	changeTask: function(id, title, priorety){
+		const task = this.tasks.find((task) => {
+			if (task.id === id) {
+				task.title = title;
+				task.priorety = priorety;
+				return task;
+			}
+		})
+	}
+}
+TodoList.addTask("Проверить программу на ошибки", 5);
+TodoList.addTask("gregergreger", 3);
+TodoList.sortTasks()
+TodoList.changeTask(1, 'блаба', 32)
+console.log(TodoList.tasks);
