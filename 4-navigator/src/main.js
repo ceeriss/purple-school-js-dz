@@ -1,33 +1,41 @@
-const TodoList = {
-	tasks:[],
-	id:0,
-	addTask: function(title, priorety){
-		const task = {
-			id: this.id++,
-			title: title,
-			priorety: priorety,
-		}
-		this.tasks.push(task);
-		return task
-	},
-	removeTask: function(id){
-		this.tasks = this.tasks.filter((task) => task.id !== id)
-	},
-	sortTasks: function () {
-		this.tasks.sort((a,b) => a.priorety - b.priorety);
-	},
-	changeTask: function(id, title, priorety){
-		const task = this.tasks.find((task) => {
-			if (task.id === id) {
-				task.title = title;
-				task.priorety = priorety;
-				return task;
-			}
-		})
-	}
-}
-TodoList.addTask("Проверить программу на ошибки", 5);
-TodoList.addTask("gregergreger", 3);
-TodoList.sortTasks()
-TodoList.changeTask(1, 'блаба', 32)
-console.log(TodoList.tasks);
+const newTask = {
+  tasks: [
+    {
+      id: 1,
+      name: "тест",
+      description: "описание",
+      order: 0,
+    },
+  ],
+  id: 1, // Добавляем счетчик id
+
+  addTask(name, order, description = "") {
+    const task = {
+      id: this.id++,
+      name: name,
+      description: description,
+      order: order,
+    };
+    this.tasks.push(task);
+    return task;
+  },
+
+  removeTask(id) {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
+  },
+
+  sortTasks() {
+    this.tasks.sort((a, b) => a.order - b.order);
+  },
+
+  changeTask(id, name, order, description) {
+    const task = this.tasks.find((task) => task.id === id);
+    if (task) {
+      if (name !== undefined) task.name = name;
+      if (order !== undefined) task.order = order;
+      if (description !== undefined) task.description = description;
+      return task;
+    }
+    return null;
+  },
+};
