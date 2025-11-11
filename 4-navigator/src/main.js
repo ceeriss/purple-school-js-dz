@@ -39,3 +39,11 @@ const newTask = {
     return null;
   },
 };
+newTask.addTask('Сходить в душ', 32, 'Надо срочно сходить в душ');
+newTask.addTask("Сходить в магазин", 54, "Надо срочно сходить в магазин");
+newTask.addTask("Сходить в школу", 1, "Надо срочно сходить в школу");
+newTask.addTask("Сходить в баню", 3, "Надо срочно сходить в баню");
+newTask.removeTask(1)
+newTask.sortTasks()
+newTask.changeTask(2, 'блабал', 7867856, 'балбалулауцаука')
+console.log(newTask);
