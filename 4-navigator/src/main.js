@@ -1,27 +1,40 @@
-// Задаем координаты
-const addressLat = 10; // адрес назначения lat
-const addressLong = 20; // адрес назначения long
-const positionLat = 5; // текущее положение lat
-const positionLong = 15; // текущее положение long
+const value1 = document.querySelector(".value1");
+const value2 = document.querySelector(".value2");
+const plus = document.querySelector(".plus");
+const minus = document.querySelector(".minus");
+const umnoj = document.querySelector(".umnoj");
+const delenie = document.querySelector(".delenie");
 
-// Считаем разницу по координатам
-const diffLat = addressLat - positionLat; // разница по широте
-const diffLong = addressLong - positionLong; // разница по долготе
+const result = document.querySelector(".result");
 
-// Возводим разницы в квадрат
-const diffLatSquared = diffLat * diffLat;
-const diffLongSquared = diffLong * diffLong;
-
-// Складываем квадраты разниц
-const sumOfSquares = diffLatSquared + diffLongSquared;
-
-// Вычисляем квадратный корень простым способом (приблизительно)
-let distance = sumOfSquares / 2; // начинаем с половины числа
-
-// Уточняем результат несколько раз
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-distance = (distance + sumOfSquares / distance) / 2;
-
-// Выводим результат
-console.log("Расстояние: " + distance);
+plus.addEventListener('click', summ)
+minus.addEventListener("click", minuss);
+umnoj.addEventListener("click", umnojj);
+delenie.addEventListener("click", deleniee);
+function summ(){
+  if (!value1.value || !value2.value){
+    alert('Введите оба значения!')
+    return
+  }
+  else{
+    if (isNaN(value1.value) || isNaN(value2.value)) {
+      alert("Введите числа!");
+      return;
+    } else {
+      result.value = Number(value1.value + value2.value);
+      value1.value = "";
+      value2.value = "";
+    }
+   
+  }
+  
+}
+function minuss() {
+  return (result.value = Number(value1.value - value2.value));
+}
+function umnojj() {
+  return (result.value = Number(value1.value * value2.value));
+}
+function deleniee() {
+  return (result.value = Number(value1.value / value2.value));
+}
