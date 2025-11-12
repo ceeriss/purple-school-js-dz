@@ -1,49 +1,40 @@
-const newTask = {
-  tasks: [
-    {
-      id: 1,
-      name: "тест",
-      description: "описание",
-      order: 0,
-    },
-  ],
-  id: 1, // Добавляем счетчик id
+const value1 = document.querySelector(".value1");
+const value2 = document.querySelector(".value2");
+const plus = document.querySelector(".plus");
+const minus = document.querySelector(".minus");
+const umnoj = document.querySelector(".umnoj");
+const delenie = document.querySelector(".delenie");
 
-  addTask(name, order, description = "") {
-    const task = {
-      id: this.id++,
-      name: name,
-      description: description,
-      order: order,
-    };
-    this.tasks.push(task);
-    return task;
-  },
+const result = document.querySelector(".result");
 
-  removeTask(id) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-  },
-
-  sortTasks() {
-    this.tasks.sort((a, b) => a.order - b.order);
-  },
-
-  changeTask(id, name, order, description) {
-    const task = this.tasks.find((task) => task.id === id);
-    if (task) {
-      if (name !== undefined) task.name = name;
-      if (order !== undefined) task.order = order;
-      if (description !== undefined) task.description = description;
-      return task;
+plus.addEventListener('click', summ)
+minus.addEventListener("click", minuss);
+umnoj.addEventListener("click", umnojj);
+delenie.addEventListener("click", deleniee);
+function summ(){
+  if (!value1.value || !value2.value){
+    alert('Введите оба значения!')
+    return
+  }
+  else{
+    if (isNaN(value1.value) || isNaN(value2.value)) {
+      alert("Введите числа!");
+      return;
+    } else {
+      result.value = Number(value1.value + value2.value);
+      value1.value = "";
+      value2.value = "";
     }
-    return null;
-  },
-};
-newTask.addTask('Сходить в душ', 32, 'Надо срочно сходить в душ');
-newTask.addTask("Сходить в магазин", 54, "Надо срочно сходить в магазин");
-newTask.addTask("Сходить в школу", 1, "Надо срочно сходить в школу");
-newTask.addTask("Сходить в баню", 3, "Надо срочно сходить в баню");
-newTask.removeTask(1)
-newTask.sortTasks()
-newTask.changeTask(2, 'блабал', 7867856, 'балбалулауцаука')
-console.log(newTask);
+   
+  }
+  
+}
+function minuss() {
+  return (result.value = Number(value1.value - value2.value));
+}
+function umnojj() {
+  return (result.value = Number(value1.value * value2.value));
+}
+function deleniee() {
+  return (result.value = Number(value1.value / value2.value));
+}
